@@ -28,7 +28,7 @@ def product():
 
         p_id = request.form.get("productid", "")
         pname = request.form.get("productname", "")
-        details = Product.query.all()
+        # details = Product.query.all()
         prod = Product.query.filter_by(prod_id=p_id).first()
         prod.prod_name = eform.editname.data
         prod.prod_qty = eform.editqty.data
@@ -42,7 +42,7 @@ def product():
             db.session.rollback()
             flash(f'This book already exists', 'danger')
             return redirect('/Product')
-        return render_template('product.html', title='Products', details=details, eform=eform)
+        # return render_template('product.html', title='Products', details=details, eform=eform)
 
     elif form.validate_on_submit():
         # else:
@@ -63,16 +63,17 @@ def product():
 
 @app.route("/Location", methods=['GET', 'POST'])
 def loc():
-    form = addlocation(request.form)
-    lform = editlocation(request.form)
+    form = addlocation()
+    lform = editlocation()
     details = Location.query.all()
     exists = bool(Location.query.all())
     if exists == False and request.method == 'GET':
         flash(f'Add student to view', 'info')
+
     if lform.validate_on_submit() and request.method == 'POST':
         p_id = request.form.get("locid", "")
         locname = request.form.get("locname", "")
-        details = Location.query.all()
+        # details = Location.query.all()
         loc = Location.query.filter_by(loc_id=p_id).first()
         loc.loc_name = lform.editlocname.data
         Balance.query.filter_by(location=locname).update(dict(location=lform.editlocname.data))
@@ -92,11 +93,14 @@ def loc():
         try:
             db.session.commit()
             flash(f'This student {form.locname.data} has been added!', 'success')
-            return redirect(url_for('loc'))
+            # return redirect(url_for('loc'))
+            return redirect('/Location')
+
         except IntegrityError:
             db.session.rollback()
             flash(f'This student already exists', 'danger')
             return redirect('/Location')
+
     return render_template('loc.html', title='Locations', lform=lform, form=form, details=details)
 
 

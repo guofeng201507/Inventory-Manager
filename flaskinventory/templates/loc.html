@@ -37,17 +37,17 @@
                             {{ form.csrf_token() }}
                             {{ form.locname.label(class="form-control-label") }}<br>
                             {{ form.locname(class="form-control form-control-lg") }}
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <div>
+                                    {{ form.locsubmit(class="btn btn-primary") }}
+                                </div>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <div>
-                            {{ form.locsubmit(class="btn btn-primary") }}
-                        </div>
-                    </div>
-                    </form>
                 </div>
             </div>
+
         </div>
         <!--end of modal design-->
 
@@ -89,26 +89,26 @@
                                         {{ lform.csrf_token() }}
                                         {{ lform.editlocname.label(class="form-control-label") }}<br>
                                         {{ lform.editlocname(class="form-control form-control-lg",placeholder=d.loc_name) }}
-
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                            <div>
+                                                {{ lform.editlocsubmit(class="btn btn-primary") }}
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <div>
-                                        {{ lform.editlocsubmit(class="btn btn-primary") }}
-                                    </div>
-                                </div>
-                                </form>
                             </div>
-                        </div>
 
-                    </div>
-                    <!--editmodal end-->
-                    <td>
-                        <a href="{{ url_for('delete', p_id = d.loc_id,type ='location' ) }}">
-                            <button type="button" class="btn btn-delete">
-                                <span class="btn-icon"><i class="glyphicon glyphicon-trash"></i></span>Delete
-                            </button>
-                    </td>
+                        </div>
+                        <!--editmodal end-->
+                        <td>
+                            <a href="{{ url_for('delete', p_id = d.loc_id,type ='location' ) }}">
+                                <button type="button" class="btn btn-delete">
+                                    <span class="btn-icon"><i class="glyphicon glyphicon-trash"></i></span>Delete
+                                </button>
+                            </a>
+                        </td>
                 </tr>
             {% endfor %}
             </tbody>

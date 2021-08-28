@@ -16,7 +16,9 @@ class editproduct(FlaskForm):
 
 
 class addlocation(FlaskForm):
-    locname = StringField('Student Name', validators=[DataRequired()])
+    # locname = StringField('Student Name', validators=[DataRequired()])
+    locname = StringField('Student Name', validators=[])
+
     locsubmit = SubmitField('Save Changes')
 
 
